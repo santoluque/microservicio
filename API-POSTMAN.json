@@ -1,0 +1,356 @@
+{
+    "collection": {
+        "info": {
+            "_postman_id": "f908e12e-9960-4fbb-9661-595a24975bf0",
+            "name": "TEST-GLOBANT",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "updatedAt": "2023-11-07T05:32:06.000Z",
+            "uid": "1900923-f908e12e-9960-4fbb-9661-595a24975bf0"
+        },
+        "item": [{
+                "name": "bill",
+                "item": [{
+                        "name": "find-cuenta",
+                        "id": "e9c0892c-f577-4fe0-9969-3d28ab475f6f",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:8081/bill/v1/cuentas/478758",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8081",
+                                "path": ["bill", "v1", "cuentas", "478758"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-e9c0892c-f577-4fe0-9969-3d28ab475f6f"
+                    }, {
+                        "name": "reportes",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "b5f9debc-a2c4-42b5-b108-539570160a24",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "15e6f56b-e1a5-42c7-a196-d3a6e290e081",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:8081/bill/v1/reportes/clientes/12?desde=2023-11-06&hasta=2023-11-07",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8081",
+                                "path": ["bill", "v1", "reportes", "clientes", "12"],
+                                "query": [{
+                                        "key": "desde",
+                                        "value": "2023-11-06"
+                                    }, {
+                                        "key": "hasta",
+                                        "value": "2023-11-07"
+                                    }]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-15e6f56b-e1a5-42c7-a196-d3a6e290e081"
+                    }, {
+                        "name": "create-cuenta",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "e69892e6-a477-4fb9-9ae5-57490fb403ac",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});\r", "\r", "pm.test(\"Check code\", function () {\r", "    var jsonData = pm.response.json();\r", "    pm.expect(jsonData.code).to.eql(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "7171f654-ffa0-4219-acc2-a9d5145e3db4",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\": \"C\",\r\n    \"saldoInicial\": 1000.00,\r\n    \"estado\": true,\r\n    \"clienteId\":12\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:8081/bill/v1/cuentas",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8081",
+                                "path": ["bill", "v1", "cuentas"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-7171f654-ffa0-4219-acc2-a9d5145e3db4"
+                    }, {
+                        "name": "create-movimiento",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "e2b7d5ad-63fb-417e-bcdd-ec6f17f99356",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});\r", ""],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "384856be-8ff8-4109-ac31-e8310ee10428",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"fecha\": \"2023-11-06 08:35:00\",\r\n    \"tipoMovimiento\": \"CR\",\r\n    \"valor\": 150.00,\r\n    \"saldo\": 0.00,\r\n    \"numeroCuenta\":\"478758\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:8081/bill/v1/movimientos",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8081",
+                                "path": ["bill", "v1", "movimientos"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-384856be-8ff8-4109-ac31-e8310ee10428"
+                    }, {
+                        "name": "update-movimiento",
+                        "id": "6250d670-abbc-446e-8384-377e873fed64",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "PUT",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"fecha\": \"2023-11-06 09:00:00\",\r\n    \"tipoMovimiento\": \"CR\",\r\n    \"valor\": 10.00,\r\n    \"saldo\": 0.00,\r\n    \"numeroCuenta\":\"478758\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:8081/bill/v1/movimientos/15",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8081",
+                                "path": ["bill", "v1", "movimientos", "15"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-6250d670-abbc-446e-8384-377e873fed64"
+                    }, {
+                        "name": "update-cuenta",
+                        "id": "21ae0bcf-1384-44d8-bf1e-9b7c419bc5cb",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "PUT",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"numeroCuenta\": \"478758\",\r\n    \"tipoCuenta\": \"A\",\r\n    \"saldoInicial\": 200.00,\r\n    \"estado\": true,\r\n    \"clienteId\":12\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:8081/bill/v1/cuentas",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8081",
+                                "path": ["bill", "v1", "cuentas"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-21ae0bcf-1384-44d8-bf1e-9b7c419bc5cb"
+                    }],
+                "id": "ab553e45-2d66-465c-9ff9-dd8c4925d75c",
+                "uid": "1900923-ab553e45-2d66-465c-9ff9-dd8c4925d75c"
+            }, {
+                "name": "crm",
+                "item": [{
+                        "name": "crm-create-cliente",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "4b56b30a-1927-45d9-83d3-001704ec423b",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "c1f90bc5-5934-4e56-8d5e-19acf8d21be7",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"contrasena\": \"5678\",\r\n    \"estado\": true,\r\n    \"persona\": {\r\n        \"identificacion\": \"0000000002\",\r\n        \"nombre\": \"Marianela Montalvo\",\r\n        \"genero\": \"F\",\r\n        \"edad\": 30,\r\n        \"direccion\": \"Amazonas y NNUU\",\r\n        \"telefono\": \"097548965\"\r\n    }\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:8082/crm/v1/clientes",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8082",
+                                "path": ["crm", "v1", "clientes"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-c1f90bc5-5934-4e56-8d5e-19acf8d21be7"
+                    }, {
+                        "name": "crm-update-cliente",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "fa8eccd8-7758-4d81-917d-41ef71d9a70e",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "4468da2b-45fb-47a1-b38c-560f7de96d9c",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "PUT",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"contrasena\": \"5678\",\r\n    \"estado\": true,\r\n    \"persona\": {\r\n        \"identificacion\": \"0000000002\",\r\n        \"nombre\": \"Marianela Montalvo\",\r\n        \"genero\": \"F\",\r\n        \"edad\": 32,\r\n        \"direccion\": \"Amazonas y NNUU\",\r\n        \"telefono\": \"097548965\"\r\n    }\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:8082/crm/v1/clientes/13",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8082",
+                                "path": ["crm", "v1", "clientes", "13"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-4468da2b-45fb-47a1-b38c-560f7de96d9c"
+                    }, {
+                        "name": "crm-delete-cliente",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "6e03947f-5ade-486a-bb49-528a2acb04a2",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "a4273234-1a2e-4a95-8362-f89bef6bdc69",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:8082/crm/v1/clientes/12",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8082",
+                                "path": ["crm", "v1", "clientes", "12"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-a4273234-1a2e-4a95-8362-f89bef6bdc69"
+                    }, {
+                        "name": "crm-list-all-cliente",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "0b9f3774-abb3-4ef1-bbd6-2221db537b6d",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "5bd8fc2e-be07-44a1-8cdd-2d9827e734dc",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:8082/crm/v1/clientes",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8082",
+                                "path": ["crm", "v1", "clientes"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-5bd8fc2e-be07-44a1-8cdd-2d9827e734dc"
+                    }, {
+                        "name": "crm-find-cliente",
+                        "event": [{
+                                "listen": "test",
+                                "script": {
+                                    "id": "924f226b-8788-4938-a7c7-8582835250f6",
+                                    "exec": ["pm.test(\"Status code is 200\", function () {\r", "    pm.response.to.have.status(200);\r", "});"],
+                                    "type": "text/javascript"
+                                }
+                            }],
+                        "id": "82da5137-8948-49b3-be8a-f8886ec35baf",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:8082/crm/v1/clientes/13",
+                                "protocol": "http",
+                                "host": ["localhost"],
+                                "port": "8082",
+                                "path": ["crm", "v1", "clientes", "13"]
+                            }
+                        },
+                        "response": [],
+                        "uid": "1900923-82da5137-8948-49b3-be8a-f8886ec35baf"
+                    }],
+                "id": "719b04b4-c5eb-43b3-849b-72179abb7527",
+                "uid": "1900923-719b04b4-c5eb-43b3-849b-72179abb7527"
+            }]
+    }
+}
