@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  crm:
+    image: 'api-crm:latest'
+    build:
+      context: /crm/crm/.
+    container_name: crm
+    ports: 
+       - 8081:8080
+    network_mode: "host"
+
+  bill:
+    image: 'api-bill:latest'
+    build:
+      context: /bill/bill/.
+    container_name: bill
+    ports: 
+       - 8082:8080
+    network_mode: "host"
+

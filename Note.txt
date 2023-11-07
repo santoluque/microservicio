@@ -1,0 +1,3 @@
+-- Iniciar microservicios en conjunto
+
+docker-compose up -d
