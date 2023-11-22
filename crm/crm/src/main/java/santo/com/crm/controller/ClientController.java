@@ -2,7 +2,6 @@ package santo.com.crm.controller;
 
 //import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import santo.com.crm.dto.ClientePostDto;
-import santo.com.crm.entity.Cliente;
 import santo.com.crm.service.ClienteService;
 import santo.com.crm.util.ApiResponseH;
 

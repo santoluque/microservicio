@@ -89,11 +89,15 @@ public class ClienteService {
                 newPerson.setGenero(dtoCliente.getPersona().getGenero());
                 newPerson.setTelefono(dtoCliente.getPersona().getTelefono());
                 newPerson.setDireccion(dtoCliente.getPersona().getDireccion().toUpperCase());
-                newPerson = personaRepository.save(newPerson);
-
             } else {
                 newPerson = persona.get();
+                newPerson.setNombre(dtoCliente.getPersona().getNombre().toUpperCase());
+                newPerson.setEdad(dtoCliente.getPersona().getEdad());
+                newPerson.setGenero(dtoCliente.getPersona().getGenero());
+                newPerson.setTelefono(dtoCliente.getPersona().getTelefono());
+                newPerson.setDireccion(dtoCliente.getPersona().getDireccion().toUpperCase());
             }
+            newPerson = personaRepository.save(newPerson);
             cliente.get().setIdentificacion(newPerson);
             clienteRepository.save(cliente.get());
 
